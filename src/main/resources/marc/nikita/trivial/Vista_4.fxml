@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
 
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="marc.nikita.trivial.Vista4">
+   <children>
+      <TextArea layoutX="300.0" layoutY="83.0" prefHeight="200.0" prefWidth="200.0" />
+      <Text layoutX="376.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ranking:" wrappingWidth="47.7366943359375" />
+      <Button fx:id="idTornaAJugar" layoutX="112.0" layoutY="132.0" mnemonicParsing="false" text="Tornar a jugar" />
+      <Button fx:id="idSortirV4" layoutX="112.0" layoutY="208.0" mnemonicParsing="false" text="Sortir" />
+   </children>
 </AnchorPane>

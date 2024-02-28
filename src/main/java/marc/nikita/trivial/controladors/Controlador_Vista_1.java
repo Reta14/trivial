@@ -1,10 +1,10 @@
-package marc.nikita.trivial;
+package marc.nikita.trivial.controladors;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-public class ControladorVista_1 {
+public class Controlador_Vista_1 {
     @FXML
     private TextField idTFNom;
     @FXML
