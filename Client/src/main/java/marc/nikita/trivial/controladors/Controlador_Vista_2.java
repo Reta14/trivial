@@ -14,4 +14,5 @@ public class Controlador_Vista_2 {
     @FXML
     private Button idInformatica;
 
+
 }

@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.Pane?>
 
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="marc.nikita.trivial.controladors.Controlador_Vista_2">
    <children>
       <Button fx:id="idEsports" layoutX="247.0" layoutY="77.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Esports" />
       <Button fx:id="idCulturaGeneral" layoutX="430.0" layoutY="77.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Cultura General" />
