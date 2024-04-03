@@ -26,7 +26,7 @@ public class Controlador_Vista_1 {
 
     @FXML
     private void handleJugarButtonAction() throws IOException {
-        //String nomJugador = idTFNom.getText();
+        String nomJugador = idTFNom.getText();
         // Cargar la segunda vista y mostrarla
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Vista_2.fxml"));
         Pane vista2 = loader.load();
