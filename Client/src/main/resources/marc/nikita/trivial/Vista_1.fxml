@@ -10,7 +10,7 @@
    <children>
       <Label layoutX="106.0" layoutY="100.0" prefHeight="34.0" prefWidth="40.0" text="Nom:" />
       <TextField fx:id="idTFNom" layoutX="146.0" layoutY="105.0" prefHeight="25.0" prefWidth="229.0" promptText="Escriu el teu nom aqui" />
-      <Button fx:id="idJugar" layoutX="190.0" layoutY="231.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="71.0" text="Jugar" />
-      <Button fx:id="idSortir" layoutX="375.0" layoutY="231.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="71.0" text="Sortir" />
+      <Button fx:id="idJugar" onAction="#handleJugarButtonAction" layoutX="190.0" layoutY="231.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="71.0" text="Jugar" />
+      <Button fx:id="idSortir" onAction="#handleSortirButtonAction"  layoutX="375.0" layoutY="231.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="71.0" text="Sortir" />
    </children>
 </Pane>

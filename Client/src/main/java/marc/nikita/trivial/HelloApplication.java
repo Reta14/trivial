@@ -14,6 +14,9 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import static connexions.SocketThread.nomJugador;
+
+
 public class HelloApplication extends Application {
 
     @Override
@@ -26,7 +29,8 @@ public class HelloApplication extends Application {
         primaryStage.show();
 
         // Crear y ejecutar un nuevo hilo para la conexión del socket
-        SocketThread socketThread = new SocketThread();
+        //String nomJugador = idTFNom.getText();
+        SocketThread socketThread = new SocketThread(nomJugador);
         socketThread.start();
     }
 

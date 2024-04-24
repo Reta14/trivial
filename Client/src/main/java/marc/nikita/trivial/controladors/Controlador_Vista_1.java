@@ -1,5 +1,5 @@
 package marc.nikita.trivial.controladors;
-
+import connexions.SocketThread;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -26,6 +26,7 @@ public class Controlador_Vista_1 {
 
     @FXML
     private void handleJugarButtonAction() throws IOException {
+
         String nomJugador = idTFNom.getText();
         // Cargar la segunda vista y mostrarla
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Vista_2.fxml"));
@@ -39,7 +40,7 @@ public class Controlador_Vista_1 {
         scene.setRoot(vista2);
         stage.setScene(scene);
 
-        //SocketThread.enviarNombre(nomJugador);
+        SocketThread.enviarNombre(nomJugador);
     }
 
     @FXML

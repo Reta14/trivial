@@ -9,30 +9,34 @@ public class Test {
     public static void main(String[] args) {
         final int PORT = 1234; // Puerto en el que el servidor escucha las conexiones entrantes
 
+
         try {
             ServerSocket serverSocket = new ServerSocket(PORT);
             System.out.println("Servidor en linea...");
 
-            // Esperar conexiones entrantes
-            Socket clientSocket = serverSocket.accept();
-            System.out.println("Cliente conectado desde " + clientSocket.getInetAddress().getHostName());
+            while (true) {
 
-            // Configurar flujo de entrada y salida para el cliente
-            PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-            BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                // Esperar conexiones entrantes
+                Socket clientSocket = serverSocket.accept();
+                System.out.println("Cliente conectado desde " + clientSocket.getInetAddress().getHostName());
 
-            // Leer mensaje del cliente
-            String mensaje = in.readLine();
-            System.out.println("Mensaje del cliente: " + mensaje);
+                // Configurar flujo de entrada y salida para el cliente
+                PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+                BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
-            // Enviar respuesta al cliente
-            out.println("Hola, cliente");
+                // Leer mensaje del cliente
+                String mensaje = in.readLine();
+                System.out.println("Mensaje del cliente: " + mensaje);
 
-            // Cerrar conexiones
-            out.close();
-            in.close();
-            clientSocket.close();
-            serverSocket.close();
+                // Enviar respuesta al cliente
+                out.println("Hola, cliente");
+
+                // Cerrar conexiones
+                out.close();
+                in.close();
+                clientSocket.close();
+                //serverSocket.close();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

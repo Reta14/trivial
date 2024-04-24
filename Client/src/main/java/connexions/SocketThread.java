@@ -7,14 +7,22 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import static java.lang.System.out;
+
 
 public class SocketThread extends Thread {
     private static final String HOST_NAME = "127.0.0.1";
     private static final int PORT_NUMBER = 1234;
-    private static String nomJugador;
+    public static String nomJugador;
 
-    public SocketThread() {
+    public SocketThread(String nomJugador) {
         this.nomJugador = nomJugador;
+    }
+
+    public static void enviarNombre(String nomJugador) {
+        if (out != null) {
+            out.println(nomJugador);
+        }
     }
 
     @Override
@@ -28,6 +36,10 @@ public class SocketThread extends Thread {
 
             String userInput;
             while ((userInput = stdIn.readLine()) != null) {
+                String messageToSend = userInput;
+                if (nomJugador != null) {
+                    messageToSend += nomJugador;
+                }
                 out.println(userInput + nomJugador);
                 System.out.println("echo: " + in.readLine());
             }
@@ -38,5 +50,7 @@ public class SocketThread extends Thread {
             System.err.println("No es pot obtenir la I/O per la connexió a " + HOST_NAME);
             System.exit(1);
         }
+
+        }
+
     }
-}
