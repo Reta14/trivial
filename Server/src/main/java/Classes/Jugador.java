@@ -3,10 +3,12 @@ package Classes;
 public class Jugador {
     private String nom;
     private int punts;
+    private String ip;
 
-    public Jugador(String nom, int punts) {
+    public Jugador(String nom, int punts, String ip) {
         this.nom = nom;
         this.punts = punts;
+        this.ip = ip;
     }
 
     public int getPunts() {

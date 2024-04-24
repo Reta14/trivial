@@ -26,6 +26,7 @@ public class Test {
 
                 // Leer mensaje del cliente
                 String mensaje = in.readLine();
+
                 System.out.println("Mensaje del cliente: " + mensaje);
 
                 // Enviar respuesta al cliente

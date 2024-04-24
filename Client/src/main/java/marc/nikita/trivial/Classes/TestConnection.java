@@ -9,15 +9,18 @@ import java.net.Socket;
 public class TestConnection {
     public static void main(String[] args) {
         final String SERVER_ADDRESS = "localhost"; // Cambia esta dirección si el servidor está en otra máquina
-        final int SERVER_PORT = 12345; // Cambia este puerto si es necesario
+        final int SERVER_PORT = 1234; // Cambia este puerto si es necesario
 
         try {
             Socket socket = new Socket(SERVER_ADDRESS, SERVER_PORT);
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            Missatge m = new Missatge();
+            m.setClau("nom");
+            m.setContingut("Nikita");
 
             // Enviar mensaje al servidor
-            out.println("Hola, servidor");
+            out.println(m.getJson());
 
             // Leer respuesta del servidor
             String respuesta = in.readLine();
