@@ -8,6 +8,11 @@ public class Missatge {
 
     private static Gson gson = new Gson();
 
+    public Missatge(String contingut, String clau) {
+        this.contingut = contingut;
+        this.clau = clau;
+    }
+
     public Missatge() {
     }
 

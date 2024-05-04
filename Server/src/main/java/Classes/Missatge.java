@@ -6,10 +6,13 @@ package Classes;
 //  contingut:
 
 
+import com.google.gson.Gson;
 
 public class Missatge {
     private String contingut;
     private String clau;
+
+    private static Gson gson = new Gson();
 
     public Missatge() {
     }
@@ -28,5 +31,14 @@ public class Missatge {
 
     public void setContingut(String contingut) {
         this.contingut = contingut;
+    }
+    public String getJson(){
+        return gson.toJson(this);
+    }
+
+    public void fromJsonToMissatge(String json){
+        Missatge missatge = gson.fromJson(json, Missatge.class);
+        this.contingut = missatge.getContingut();
+        this.clau = missatge.getClau();
     }
 }

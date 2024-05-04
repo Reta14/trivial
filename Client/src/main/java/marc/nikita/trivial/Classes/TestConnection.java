@@ -11,27 +11,28 @@ public class TestConnection {
         final String SERVER_ADDRESS = "localhost"; // Cambia esta dirección si el servidor está en otra máquina
         final int SERVER_PORT = 1234; // Cambia este puerto si es necesario
 
-        try {
-            Socket socket = new Socket(SERVER_ADDRESS, SERVER_PORT);
+        try(Socket socket = new Socket(SERVER_ADDRESS, SERVER_PORT);
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));) {
+
             Missatge m = new Missatge();
             m.setClau("nom");
             m.setContingut("Nikita");
-
+            int i = 0;
             // Enviar mensaje al servidor
-            out.println(m.getJson());
-
+            do {
+                out.println(m.getJson());
+                i++;
+                Thread.sleep(1000);
+            }while(i < 5);
             // Leer respuesta del servidor
             String respuesta = in.readLine();
             System.out.println("Respuesta del servidor: " + respuesta);
 
-            // Cerrar conexiones
-            out.close();
-            in.close();
-            socket.close();
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 }

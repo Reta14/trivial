@@ -18,7 +18,8 @@ public class Test {
 
                 // Esperar conexiones entrantes
                 Socket clientSocket = serverSocket.accept();
-                System.out.println("Cliente conectado desde " + clientSocket.getInetAddress().getHostName());
+                String clientIp = clientSocket.getInetAddress().getHostAddress();
+                System.out.println("Cliente conectado desde " + clientIp);
 
                 // Configurar flujo de entrada y salida para el cliente
                 PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);

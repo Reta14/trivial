@@ -1,20 +1,22 @@
 package Classes;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-import Enums.Tema;
 
 public class Partida {
-    private int id;
-    private Tema tema;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String tema;
     private Pregunta[] preguntes;
     private Jugador[] jugadors;
 
-    public Partida(int id, Tema tema, Jugador[] jugadors) {
-        this.id = id;
+    public Partida(String tema, Jugador[] jugadors) {
         this.tema = tema;
         this.jugadors = jugadors;
+        this.preguntes = Pregunta.getPreguntesFromAPI(tema);
     }
-
-
-
 
 }
