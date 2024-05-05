@@ -25,6 +25,12 @@ public class SocketThread extends Thread {
         }
     }
 
+    public static void enviarTema(String tema) {
+        if (out != null) {
+            out.println(tema);
+        }
+    }
+
     @Override
     public void run() {
         try (Socket echoSocket = new Socket(HOST_NAME, PORT_NUMBER);

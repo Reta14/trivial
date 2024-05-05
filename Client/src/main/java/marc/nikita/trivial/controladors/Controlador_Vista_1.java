@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import marc.nikita.trivial.HelloApplication;
 
 import java.io.IOException;
 
@@ -29,7 +30,7 @@ public class Controlador_Vista_1 {
 
         String nomJugador = idTFNom.getText();
         // Cargar la segunda vista y mostrarla
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Vista_2.fxml"));
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("Vista_2.fxml"));
         Pane vista2 = loader.load();
 
         // Obtener la escena actual y la ventana principal
