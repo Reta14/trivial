@@ -7,10 +7,10 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="marc.nikita.trivial.controladors.Controlador_Vista_2">
    <children>
-      <Button fx:id="idEsports" layoutX="247.0" layoutY="77.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Esports" />
-      <Button fx:id="idCulturaGeneral" layoutX="430.0" layoutY="77.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Cultura General" />
-      <Button fx:id="idEntreteniment" layoutX="250.0" layoutY="217.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Entreteniment" />
-      <Button fx:id="idInformatica" layoutX="430.0" layoutY="217.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Informàtica" />
+      <Button fx:id="idEsports" onAction="#handleEsportsButtonAction" layoutX="247.0" layoutY="77.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Esports" />
+      <Button fx:id="idCulturaGeneral" onAction="#handleCulturaGeneralButtonAction" layoutX="430.0" layoutY="77.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Cultura General" />
+      <Button fx:id="idEntreteniment" onAction="#handleEntretenimentButtonAction" layoutX="250.0" layoutY="217.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Entreteniment" />
+      <Button fx:id="idInformatica" onAction="#handleInformaticaButtonAction" layoutX="430.0" layoutY="217.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" text="Informàtica" />
       <Label layoutX="34.0" layoutY="176.0" prefHeight="33.0" prefWidth="147.0" text="Tria una opció:" />
    </children>
 </Pane>
