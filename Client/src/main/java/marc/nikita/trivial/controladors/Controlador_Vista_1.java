@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import marc.nikita.trivial.Classes.Client;
+import marc.nikita.trivial.Classes.Missatge;
 import marc.nikita.trivial.HelloApplication;
 
 import java.io.IOException;
@@ -18,6 +20,7 @@ public class Controlador_Vista_1 {
     private Button idJugar;
     @FXML
     private Button idSortir;
+    private Client client = Client.getInstance();
 
 
     @FXML
@@ -29,6 +32,9 @@ public class Controlador_Vista_1 {
     private void handleJugarButtonAction() throws IOException {
 
         String nomJugador = idTFNom.getText();
+        Missatge missatge = new Missatge("nomJugador", nomJugador);
+        client.enviarMensaje(missatge.getJson());
+
         // Cargar la segunda vista y mostrarla
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("Vista_2.fxml"));
         Pane vista2 = loader.load();
@@ -40,8 +46,6 @@ public class Controlador_Vista_1 {
         // Establecer la nueva escena en la ventana principal
         scene.setRoot(vista2);
         stage.setScene(scene);
-
-        SocketThread.enviarNombre(nomJugador);
     }
 
     @FXML

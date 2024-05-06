@@ -1,11 +1,21 @@
 package marc.nikita.trivial.controladors;
 
+import com.google.gson.Gson;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
+import marc.nikita.trivial.Classes.Client;
+import marc.nikita.trivial.Classes.Missatge;
+import marc.nikita.trivial.Classes.Pregunta;
+
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class Controlador_Vista_3 {
 
@@ -18,14 +28,34 @@ public class Controlador_Vista_3 {
     @FXML
     private Button idOp4;
     @FXML
-    private TextArea idPregunta;
+    private TextArea TAPregunta;
     @FXML
-    private TextArea idTemps;
+    private TextArea TATemps;
     @FXML
-    private TextArea idResposta;
+    private TextArea TAResposta;
+    private Client client = Client.getInstance();
+    private Gson gson = new Gson();
 
     @FXML
-    public void initialize() {
+    public void initialize() throws IOException {
+        // Obtener la pregunta
+        try {
+            String missatge = client.recibirMensaje();
+            System.out.println(missatge);
+            Missatge m = new Missatge();
+            m.fromJsonToMissatge(missatge);
+            Pregunta p = gson.fromJson(m.getContingut(), Pregunta.class);
+            TAPregunta.setText(p.getQuestion());
+            List<String> options = p.getIncorrectAnswers();
+            options.add(p.getCorrectAnswer());
+            Collections.shuffle(options);
+            idOp1.setText(options.get(0));
+            idOp2.setText(options.get(1));
+            idOp3.setText(options.get(2));
+            idOp4.setText(options.get(3));
+        }catch (IOException e){
+            e.printStackTrace();
+        }
         // Crear un contador de 20 segundos
         final int[] counter = {20};
 
@@ -38,7 +68,7 @@ public class Controlador_Vista_3 {
             counter[0]--;
 
             // Actualizar el TextArea
-            idTemps.setText(String.valueOf(counter[0]));
+            TATemps.setText(String.valueOf(counter[0]));
 
             // Si el contador llega a 0, detener la Timeline
             if (counter[0] <= 0) {
@@ -54,6 +84,14 @@ public class Controlador_Vista_3 {
 
         // Iniciar la Timeline
         timeline.play();
+    }
+
+    @FXML
+    private void handleOpcionButtonAction(ActionEvent event) {
+        Button button = (Button) event.getSource();
+        String op = button.getText();
+        Missatge missatge = new Missatge(op, "respostaPregunta");
+        client.enviarMensaje();
     }
 
 

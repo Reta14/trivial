@@ -35,4 +35,10 @@ public class Missatge {
     public String getJson(){
         return gson.toJson(this);
     }
+
+    public void fromJsonToMissatge(String json){
+        Missatge missatge = gson.fromJson(json, Missatge.class);
+        this.contingut = missatge.getContingut();
+        this.clau = missatge.getClau();
+    }
 }

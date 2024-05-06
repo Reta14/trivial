@@ -2,6 +2,7 @@ import Classes.Jugador;
 import Classes.Missatge;
 import Classes.Partida;
 import Classes.Pregunta;
+import com.google.gson.Gson;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,6 +18,7 @@ public class Server {
     private BufferedReader in;
     private static Jugador jugador;
     private static Partida partida;
+    private static Gson gson = new Gson();
 
     public Server() {
     }
@@ -32,13 +34,14 @@ public class Server {
             System.out.println("Cliente conectado desde " + clientIp);
 
             // Configurar flujo de entrada y salida para el cliente
-            PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-            BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            out = new PrintWriter(clientSocket.getOutputStream(), true);
+            in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
             // Leer mensaje del cliente
             String mensaje;
             while ((mensaje = in.readLine()) != null) {
                 Missatge missatge = new Missatge();
+                System.out.println(mensaje);
                 missatge.fromJsonToMissatge(mensaje);
                 gestionarMissatge(missatge, clientIp);
             }
@@ -90,11 +93,16 @@ public class Server {
     private void crearJugador(Missatge missatge, String clientIp) {
         String nom = missatge.getContingut();
         jugador = new Jugador(nom, 0, clientIp);
+        System.out.println(jugador);
     }
 
     private void crearPartida(Missatge missatge) {
         String tema = missatge.getContingut();
         partida = new Partida(tema,new Jugador[]{jugador});
+        Pregunta pregunta = partida.getPreguntes()[0];
+        String jsonPregunta = gson.toJson(pregunta);
+        Missatge missatgePregunta = new Missatge( jsonPregunta,"pregunta");
+        sendMessage(missatgePregunta.getJson());
     }
 
     private void respondrePregunta(Missatge missatge, String clientIp) {

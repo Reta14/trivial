@@ -20,22 +20,19 @@ import static connexions.SocketThread.nomJugador;
 public class HelloApplication extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws IOException {
+    public void start(Stage stage) throws IOException {
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("Vista_1.fxml"));
-        Pane root = loader.load();
 
-        Scene scene1 = new Scene(root, 600, 400);
-        primaryStage.setScene(scene1);
-        primaryStage.show();
+        Scene scene = new Scene(loader.load());
+        stage.setTitle("Trivial");
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.show();
 
-        // Crear y ejecutar un nuevo hilo para la conexión del socket
-        //String nomJugador = idTFNom.getText();
-        SocketThread socketThread = new SocketThread(nomJugador);
-        socketThread.start();
     }
 
     public static void main(String[] args) {
-        launch(args);
+        launch();
     }
 }
 

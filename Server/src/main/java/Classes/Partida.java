@@ -19,4 +19,7 @@ public class Partida {
         this.preguntes = Pregunta.getPreguntesFromAPI(tema);
     }
 
+    public Pregunta[] getPreguntes() {
+        return preguntes;
+    }
 }

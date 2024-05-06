@@ -1,11 +1,14 @@
 package marc.nikita.trivial.controladors;
 import connexions.SocketThread;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import marc.nikita.trivial.Classes.Client;
+import marc.nikita.trivial.Classes.Missatge;
 import marc.nikita.trivial.HelloApplication;
 
 import java.io.IOException;
@@ -13,94 +16,38 @@ import java.io.IOException;
 public class Controlador_Vista_2 {
 
     @FXML
-    private Button idEsports;
+    private Button buttonSports;
     @FXML
-    private Button idCulturaGeneral;
+    private Button buttonGeneralKnowledge;
     @FXML
-    private Button idEntreteniment;
+    private Button buttonFilms;
     @FXML
-    private Button idInformatica;
+    private Button buttonHistory;
 
-    String tema;
+    private String tema;
+    private Client client = Client.getInstance();
+
+
 
     @FXML
-    private void handleEsportsButtonAction() throws IOException {
-        // mostrar eleccion de tema
-        System.out.println("Esports");
-        tema = "Tema: Esports";
-        // Cargar la segunda vista y mostrarla
+    private void handleCategoryButtonAction(ActionEvent event) throws IOException {
+        Button button = (Button) event.getSource();
+        tema = button.getText();
+        Missatge missatge = new Missatge(tema,"temaPartida" );
+        client.enviarMensaje(missatge.getJson());
+
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("Vista_3.fxml"));
         Pane vista3 = loader.load();
         //Obtener la escena actual y la ventana principal
-        Scene scene = idEsports.getScene();
+        Scene scene = button.getScene();
         Stage stage = (Stage) scene.getWindow();
 
         // Establecer la nueva escena en la ventana principal
         scene.setRoot(vista3);
         stage.setScene(scene);
 
-        SocketThread.enviarTema(tema);
-
-
-
     }
 
-    @FXML
-    private void handleCulturaGeneralButtonAction() throws IOException {
-        // Mostrar eleccion de tema
-        System.out.println("Cultura General");
-        tema = "Tema: Cultura General";
-        // Cargar la segunda vista y mostrarla
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("Vista_3.fxml"));
-        Pane vista3 = loader.load();
-        //Obtener la escena actual y la ventana principal
-        Scene scene = idCulturaGeneral.getScene();
-        Stage stage = (Stage) scene.getWindow();
-
-        //Establecer la nueva escena en la ventana principal
-        scene.setRoot(vista3);
-        stage.setScene(scene);
-
-        SocketThread.enviarTema(tema);
-    }
-
-    @FXML
-    private void handleEntretenimentButtonAction() throws IOException {
-        // Mostrar eleccion de tema
-        System.out.println("Entreteniment");
-        tema = "Tema: Entreteniment";
-        // Cargar la segunda vista y mostrarla
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("Vista_3.fxml"));
-        Pane vista3 = loader.load();
-        //Obtener la escena actual y la ventana principal
-        Scene scene = idEntreteniment.getScene();
-        Stage stage = (Stage) scene.getWindow();
-
-        //Establecer la nueva escena en la ventana principal
-        scene.setRoot(vista3);
-        stage.setScene(scene);
-
-        SocketThread.enviarTema(tema);
-    }
-
-    @FXML
-    private void handleInformaticaButtonAction() throws IOException {
-        // Mostrar eleccion de tema
-        System.out.println("Informàtica");
-        tema = "Tema: Informàtica";
-        // Cargar la segunda vista y mostrarla
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("Vista_3.fxml"));
-        Pane vista3 = loader.load();
-        //Obtener la escena actual y la ventana principal
-        Scene scene = idInformatica.getScene();
-        Stage stage = (Stage) scene.getWindow();
-
-        //Establecer la nueva escena en la ventana principal
-        scene.setRoot(vista3);
-        stage.setScene(scene);
-
-        SocketThread.enviarTema(tema);
-    }
 
 
 }

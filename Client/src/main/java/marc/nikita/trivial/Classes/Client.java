@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 public class Client{
+    private static Client instance;
     private Socket socket;
     private PrintWriter out;
     private BufferedReader in;
@@ -37,5 +38,12 @@ public class Client{
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static Client getInstance() {
+        if (instance == null) {
+            instance = new Client("127.0.0.1", 1234);
+        }
+        return instance;
     }
 }
