@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import marc.nikita.trivial.Classes.Client;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,8 +20,14 @@ import static connexions.SocketThread.nomJugador;
 
 public class HelloApplication extends Application {
 
+    private Client client = Client.getInstance();
+
     @Override
     public void start(Stage stage) throws IOException {
+        stage.setOnCloseRequest(event ->{
+            handleClose();
+        });
+
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("Vista_1.fxml"));
 
         Scene scene = new Scene(loader.load());
@@ -33,6 +40,11 @@ public class HelloApplication extends Application {
 
     public static void main(String[] args) {
         launch();
+    }
+
+    private void handleClose(){
+        client.cerrarConexion();
+        System.exit(0);
     }
 }
 

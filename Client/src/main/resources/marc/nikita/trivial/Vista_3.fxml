@@ -13,11 +13,11 @@
          <font>
             <Font name="Arial" size="36.0" />
          </font></TextArea>
-      <TextArea fx:id="TAResposta" disable="true" editable="false" layoutX="326.0" layoutY="287.0" prefHeight="39.0" prefWidth="215.0" style="-fx-background-color: green;" />
-      <Button fx:id="idOp1" layoutX="312.0" layoutY="46.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="127.0" textAlignment="CENTER" wrapText="true" />
-      <Button fx:id="idOp2" layoutX="449.0" layoutY="46.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="127.0" textAlignment="CENTER" wrapText="true" />
-      <Button fx:id="idOp3" layoutX="312.0" layoutY="139.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="127.0" textAlignment="CENTER" wrapText="true" />
-      <Button fx:id="idOp4" layoutX="449.0" layoutY="139.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="127.0" textAlignment="CENTER" wrapText="true" />
+      <TextArea fx:id="TAResposta" editable="false" layoutX="326.0" layoutY="287.0" prefHeight="39.0" prefWidth="215.0" style="-fx-background-color: green;" />
+      <Button fx:id="idOp1" layoutX="312.0" layoutY="46.0" mnemonicParsing="false" onAction="#handleOpcionButtonAction" prefHeight="65.0" prefWidth="127.0" textAlignment="CENTER" wrapText="true" />
+      <Button fx:id="idOp2" layoutX="449.0" layoutY="46.0" mnemonicParsing="false" onAction="#handleOpcionButtonAction" prefHeight="65.0" prefWidth="127.0" textAlignment="CENTER" wrapText="true" />
+      <Button fx:id="idOp3" layoutX="312.0" layoutY="139.0" mnemonicParsing="false" onAction="#handleOpcionButtonAction" prefHeight="65.0" prefWidth="127.0" textAlignment="CENTER" wrapText="true" />
+      <Button fx:id="idOp4" layoutX="449.0" layoutY="139.0" mnemonicParsing="false" onAction="#handleOpcionButtonAction" prefHeight="65.0" prefWidth="127.0" textAlignment="CENTER" wrapText="true" />
       <Text layoutX="127.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pregunta" wrappingWidth="57.337890625" />
       <Text layoutX="135.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Temps" wrappingWidth="42.9366455078125" />
       <Text layoutX="384.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Resposta correcte:" wrappingWidth="99.73663330078125" />

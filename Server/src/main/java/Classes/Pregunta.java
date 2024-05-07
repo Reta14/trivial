@@ -77,4 +77,8 @@ public class Pregunta {
         }
         return "any";
     }
+
+    public boolean isCorrectAnswer(String answer) {
+        return answer.equals(correct_answer);
+    }
 }

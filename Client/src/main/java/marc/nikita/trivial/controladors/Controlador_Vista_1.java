@@ -32,7 +32,7 @@ public class Controlador_Vista_1 {
     private void handleJugarButtonAction() throws IOException {
 
         String nomJugador = idTFNom.getText();
-        Missatge missatge = new Missatge("nomJugador", nomJugador);
+        Missatge missatge = new Missatge(nomJugador, "nomJugador" );
         client.enviarMensaje(missatge.getJson());
 
         // Cargar la segunda vista y mostrarla
@@ -50,6 +50,7 @@ public class Controlador_Vista_1 {
 
     @FXML
     private void handleSortirButtonAction() {
+        client.cerrarConexion();
         // Cerrar la aplicación
         System.exit(0);
     }

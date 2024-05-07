@@ -1,7 +1,4 @@
-import Classes.Jugador;
-import Classes.Missatge;
-import Classes.Partida;
-import Classes.Pregunta;
+import Classes.*;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -16,7 +13,7 @@ public class Server {
     private Socket clientSocket;
     private PrintWriter out;
     private BufferedReader in;
-    private static Jugador jugador;
+    private Jugador jugador;
     private static Partida partida;
     private static Gson gson = new Gson();
 
@@ -86,26 +83,41 @@ public class Server {
                 crearPartida(missatge);
                 break;
             case "respostaPregunta":
-
+                respondrePregunta(missatge, clientIp);
         }
     }
 
     private void crearJugador(Missatge missatge, String clientIp) {
         String nom = missatge.getContingut();
         jugador = new Jugador(nom, 0, clientIp);
-        System.out.println(jugador);
     }
 
     private void crearPartida(Missatge missatge) {
         String tema = missatge.getContingut();
         partida = new Partida(tema,new Jugador[]{jugador});
-        Pregunta pregunta = partida.getPreguntes()[0];
-        String jsonPregunta = gson.toJson(pregunta);
+        int preguntaActual = 0;
+        partida.setNumPreguntaActual(preguntaActual);
+        String jsonPregunta = gson.toJson(partida.getPreguntaActual());
         Missatge missatgePregunta = new Missatge( jsonPregunta,"pregunta");
         sendMessage(missatgePregunta.getJson());
     }
 
     private void respondrePregunta(Missatge missatge, String clientIp) {
-
+        String json = missatge.getContingut();
+        Resposta resposta = gson.fromJson(json, Resposta.class);
+        if(partida.getPreguntaActual().isCorrectAnswer(resposta.getResposta())) {
+            int puntsJugador = jugador.getPunts() + resposta.getPunts();
+            jugador.setPunts(puntsJugador);
+        }
+        if (partida.nextPregunta()){
+            String jsonPregunta = gson.toJson(partida.getPreguntaActual());
+            Missatge missatgePregunta = new Missatge(jsonPregunta, "pregunta");
+            sendMessage(missatgePregunta.getJson());
+        }else{
+            String jsonJugador = gson.toJson(jugador);
+            Missatge missatgePuntuacio = new Missatge(jsonJugador, "puntuacio");
+            sendMessage(missatgePuntuacio.getJson());
+        }
+        System.out.println(jugador.getPunts());
     }
 }

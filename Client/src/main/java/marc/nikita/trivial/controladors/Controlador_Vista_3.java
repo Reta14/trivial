@@ -1,16 +1,23 @@
 package marc.nikita.trivial.controladors;
 
 import com.google.gson.Gson;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import marc.nikita.trivial.Classes.Client;
 import marc.nikita.trivial.Classes.Missatge;
 import marc.nikita.trivial.Classes.Pregunta;
+import marc.nikita.trivial.Classes.Resposta;
+import marc.nikita.trivial.HelloApplication;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -35,6 +42,9 @@ public class Controlador_Vista_3 {
     private TextArea TAResposta;
     private Client client = Client.getInstance();
     private Gson gson = new Gson();
+    private final int[] counter = {20};
+    private ServerListener serverListener = new ServerListener();
+    private Pregunta preguntaActual;
 
     @FXML
     public void initialize() throws IOException {
@@ -45,19 +55,13 @@ public class Controlador_Vista_3 {
             Missatge m = new Missatge();
             m.fromJsonToMissatge(missatge);
             Pregunta p = gson.fromJson(m.getContingut(), Pregunta.class);
-            TAPregunta.setText(p.getQuestion());
-            List<String> options = p.getIncorrectAnswers();
-            options.add(p.getCorrectAnswer());
-            Collections.shuffle(options);
-            idOp1.setText(options.get(0));
-            idOp2.setText(options.get(1));
-            idOp3.setText(options.get(2));
-            idOp4.setText(options.get(3));
+            mostrarPregunta(p);
+            serverListener.start();
         }catch (IOException e){
             e.printStackTrace();
         }
         // Crear un contador de 20 segundos
-        final int[] counter = {20};
+
 
         // Crear una nueva Timeline
         Timeline timeline = new Timeline();
@@ -71,9 +75,9 @@ public class Controlador_Vista_3 {
             TATemps.setText(String.valueOf(counter[0]));
 
             // Si el contador llega a 0, detener la Timeline
-            if (counter[0] <= 0) {
-                timeline.stop();
-            }
+//            if (counter[0] <= 0) {
+//                timeline.stop();
+//            }
         });
 
         // Añadir el KeyFrame a la Timeline
@@ -90,36 +94,71 @@ public class Controlador_Vista_3 {
     private void handleOpcionButtonAction(ActionEvent event) {
         Button button = (Button) event.getSource();
         String op = button.getText();
-        Missatge missatge = new Missatge(op, "respostaPregunta");
-        client.enviarMensaje();
+        int punts = counter[0];
+        Resposta resposta = new Resposta(punts, op);
+        String respostaJson = gson.toJson(resposta);
+        Missatge missatge = new Missatge(respostaJson, "respostaPregunta");
+        client.enviarMensaje(missatge.getJson());
+        TAResposta.setText(preguntaActual.getCorrectAnswer());
     }
 
-
-    @FXML
-    private void handleOp1ButtonAction() {
-        // Mostrar eleccion de tema
-        System.out.println("Opcion 1");
-
-
-
+    private class ServerListener extends Thread {
+        @Override
+        public void run() {
+            while (true) {
+                try {
+                    String missatge = client.recibirMensaje();
+                    Missatge m = new Missatge();
+                    m.fromJsonToMissatge(missatge);
+                    if (m.getClau().equals("pregunta")) {
+                        Pregunta p = gson.fromJson(m.getContingut(), Pregunta.class);
+                        Thread.sleep(2000);
+                        Platform.runLater(() -> {
+                            mostrarPregunta(p);
+                        });
+                    }else if(m.getClau().equals("puntuacio")){
+                        Platform.runLater(() -> {
+                            try {
+                                mostrarResultats();
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                        });
+                        break;
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
     }
 
-    @FXML
-    private void handleOp2ButtonAction() {
-        // Mostrar eleccion de tema
-        System.out.println("Opcion 2");
+    private void mostrarPregunta(Pregunta p){
+        preguntaActual = p;
+        TAPregunta.setText(p.getQuestion());
+        List<String> options = p.getIncorrectAnswers();
+        options.add(p.getCorrectAnswer());
+        Collections.shuffle(options);
+        idOp1.setText(options.get(0));
+        idOp2.setText(options.get(1));
+        idOp3.setText(options.get(2));
+        idOp4.setText(options.get(3));
+        TAResposta.setText("");
+        counter[0] = 20;
     }
 
-    @FXML
-    private void handleOp3ButtonAction() {
-        // Mostrar eleccion de tema
-        System.out.println("Opcion 3");
-    }
+    public void mostrarResultats() throws IOException {
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("Vista_4.fxml"));
+        Pane vista3 = loader.load();
+        //Obtener la escena actual y la ventana principal
+        Scene scene = TAPregunta.getScene();
+        Stage stage = (Stage) scene.getWindow();
 
-    @FXML
-    private void handleOp4ButtonAction() {
-        // Mostrar eleccion de tema
-        System.out.println("Opcion 4");
+        // Establecer la nueva escena en la ventana principal
+        scene.setRoot(vista3);
+        stage.setScene(scene);
     }
 
 }
