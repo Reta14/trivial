@@ -112,8 +112,20 @@ public class Controlador_Vista_3 {
                     m.fromJsonToMissatge(missatge);
                     if (m.getClau().equals("pregunta")) {
                         Pregunta p = gson.fromJson(m.getContingut(), Pregunta.class);
+                        Platform.runLater(() -> {
+                            // Deshabilitar los botones
+                            idOp1.setDisable(true);
+                            idOp2.setDisable(true);
+                            idOp3.setDisable(true);
+                            idOp4.setDisable(true);
+                        });
                         Thread.sleep(2000);
                         Platform.runLater(() -> {
+                            // Habilitar los botones
+                            idOp1.setDisable(false);
+                            idOp2.setDisable(false);
+                            idOp3.setDisable(false);
+                            idOp4.setDisable(false);
                             mostrarPregunta(p);
                         });
                     }else if(m.getClau().equals("puntuacio")){
