@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="marc.nikita.trivial.controladors.Controlador_Vista_3">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="marc.nikita.trivial.controladors.Controlador_Vista_3">
    <children>
       <TextArea fx:id="TAPregunta" editable="false" layoutX="29.0" layoutY="46.0" prefHeight="186.0" prefWidth="249.0" wrapText="true" />
       <TextArea fx:id="TATemps" editable="false" layoutX="106.0" layoutY="278.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="96.0" prefWidth="100.0">
@@ -18,8 +18,8 @@
       <Button fx:id="idOp2" layoutX="449.0" layoutY="46.0" mnemonicParsing="false" onAction="#handleOpcionButtonAction" prefHeight="65.0" prefWidth="127.0" textAlignment="CENTER" wrapText="true" />
       <Button fx:id="idOp3" layoutX="312.0" layoutY="139.0" mnemonicParsing="false" onAction="#handleOpcionButtonAction" prefHeight="65.0" prefWidth="127.0" textAlignment="CENTER" wrapText="true" />
       <Button fx:id="idOp4" layoutX="449.0" layoutY="139.0" mnemonicParsing="false" onAction="#handleOpcionButtonAction" prefHeight="65.0" prefWidth="127.0" textAlignment="CENTER" wrapText="true" />
-      <Text layoutX="127.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pregunta" wrappingWidth="57.337890625" />
-      <Text layoutX="135.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Temps" wrappingWidth="42.9366455078125" />
-      <Text layoutX="384.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Resposta correcte:" wrappingWidth="99.73663330078125" />
+      <Text layoutX="127.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Question" wrappingWidth="57.337890625" />
+      <Text layoutX="135.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time" wrappingWidth="42.9366455078125" />
+      <Text layoutX="384.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Correct answer:" wrappingWidth="99.73663330078125" />
    </children>
 </Pane>

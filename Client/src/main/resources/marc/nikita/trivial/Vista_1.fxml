@@ -5,12 +5,11 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="marc.nikita.trivial.controladors.Controlador_Vista_1">
    <children>
-      <Label layoutX="106.0" layoutY="100.0" prefHeight="34.0" prefWidth="40.0" text="Nom:" />
-      <TextField fx:id="idTFNom" layoutX="146.0" layoutY="105.0" prefHeight="25.0" prefWidth="229.0" promptText="Escriu el teu nom aqui" />
-      <Button fx:id="idJugar" onAction="#handleJugarButtonAction" layoutX="190.0" layoutY="231.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="71.0" text="Jugar" />
-      <Button fx:id="idSortir" onAction="#handleSortirButtonAction"  layoutX="375.0" layoutY="231.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="71.0" text="Sortir" />
+      <Label layoutX="106.0" layoutY="100.0" prefHeight="34.0" prefWidth="40.0" text="Name:" />
+      <TextField fx:id="idTFNom" layoutX="146.0" layoutY="105.0" prefHeight="25.0" prefWidth="229.0" promptText="Write your name here" />
+      <Button fx:id="idJugar" layoutX="190.0" layoutY="231.0" mnemonicParsing="false" onAction="#handleJugarButtonAction" prefHeight="34.0" prefWidth="71.0" text="Play" />
+      <Button fx:id="idSortir" layoutX="375.0" layoutY="231.0" mnemonicParsing="false" onAction="#handleSortirButtonAction" prefHeight="34.0" prefWidth="71.0" text="Exit" />
    </children>
 </Pane>
