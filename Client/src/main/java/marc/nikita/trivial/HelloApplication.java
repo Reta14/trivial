@@ -2,6 +2,7 @@ package marc.nikita.trivial;
 
 import connexions.SocketThread;
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -46,6 +47,8 @@ public class HelloApplication extends Application {
         client.cerrarConexion();
         System.exit(0);
     }
+
+
 }
 
 

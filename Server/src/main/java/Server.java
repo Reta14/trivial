@@ -115,6 +115,7 @@ public class Server {
             sendMessage(missatgePregunta.getJson());
         }else{
             String jsonJugador = gson.toJson(jugador);
+            //guardzr puntuacio
             Missatge missatgePuntuacio = new Missatge(jsonJugador, "puntuacio");
             sendMessage(missatgePuntuacio.getJson());
         }
