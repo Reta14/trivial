@@ -8,5 +8,5 @@ module marc.nikita.trivial {
     exports marc.nikita.trivial;
     exports marc.nikita.trivial.controladors;
     opens marc.nikita.trivial.controladors to javafx.fxml;
-    opens marc.nikita.trivial.Classes to com.google.gson;
+    opens marc.nikita.trivial.Classes to javafx.base, com.google.gson;
 }

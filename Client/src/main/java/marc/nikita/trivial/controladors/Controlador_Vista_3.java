@@ -110,7 +110,7 @@ public class Controlador_Vista_3 {
                     String missatge = client.recibirMensaje();
                     Missatge m = new Missatge();
                     m.fromJsonToMissatge(missatge);
-                    if (m.getClau().equals("pregunta")) {
+                    if (m.getClau().equals("pregunta") || counter[0] == 0) {
                         Pregunta p = gson.fromJson(m.getContingut(), Pregunta.class);
                         Platform.runLater(() -> {
                             // Deshabilitar los botones
@@ -128,7 +128,7 @@ public class Controlador_Vista_3 {
                             idOp4.setDisable(false);
                             mostrarPregunta(p);
                         });
-                    }else if(m.getClau().equals("puntuacio")){
+                    }else if(m.getClau().equals("fiPartida")){
                         Platform.runLater(() -> {
                             try {
                                 mostrarResultats();

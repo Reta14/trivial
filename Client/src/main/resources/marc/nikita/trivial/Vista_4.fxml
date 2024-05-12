@@ -11,11 +11,6 @@
       <Text layoutX="376.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ranking:" wrappingWidth="47.7366943359375" />
       <Button fx:id="idTornaAJugar" layoutX="112.0" layoutY="132.0" mnemonicParsing="false" onAction="#handleTornaAJugarButtonAction" text="Tornar a jugar" />
       <Button fx:id="idSortirV4" layoutX="112.0" layoutY="208.0" mnemonicParsing="false" onAction="#handleSortirButtonAction" text="Sortir" />
-      <TableView fx:id="TVRanking" layoutX="266.0" layoutY="89.0" prefHeight="246.0" prefWidth="282.0">
-        <columns>
-          <TableColumn fx:id="CNom" prefWidth="146.0" text="Nom" />
-          <TableColumn fx:id="CPunts" prefWidth="135.0" text="Punts" />
-        </columns>
-      </TableView>
+      <TableView fx:id="TVRanking" layoutX="266.0" layoutY="89.0" prefHeight="246.0" prefWidth="282.0" />
    </children>
 </AnchorPane>

@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.List;
 
 public class Server {
     private ServerSocket serverSocket;
@@ -114,9 +115,11 @@ public class Server {
             Missatge missatgePregunta = new Missatge(jsonPregunta, "pregunta");
             sendMessage(missatgePregunta.getJson());
         }else{
-            String jsonJugador = gson.toJson(jugador);
             jugador.guardarJugador();
-            Missatge missatgePuntuacio = new Missatge(jsonJugador, "puntuacio");
+            Missatge missatgeFiPartida = new Missatge(null, "fiPartida");
+            sendMessage(missatgeFiPartida.getJson());
+            List<Jugador> jugadors = jugador.getJugadores();
+            Missatge missatgePuntuacio = new Missatge(gson.toJson(jugadors), "puntuacio");
             sendMessage(missatgePuntuacio.getJson());
         }
         System.out.println(jugador.getPunts());

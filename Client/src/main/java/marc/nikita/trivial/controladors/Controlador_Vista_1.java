@@ -1,5 +1,4 @@
 package marc.nikita.trivial.controladors;
-import connexions.SocketThread;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
