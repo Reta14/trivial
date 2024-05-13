@@ -12,8 +12,10 @@ public class Pregunta {
     private String correct_answer;
     private List<String> incorrect_answers;
 
+    // Instancia de Gson para convertir objetos a JSON y viceversa.
     private static Gson gson = new Gson();
 
+    // Inicializa el tipo, la dificultad, la categoría, el texto de la pregunta, la respuesta correcta y las respuestas incorrectas.
     public Pregunta(String type, String difficulty, String category, String question, String correct_answer, List<String> incorrect_answers) {
         this.type = type;
         this.difficulty = difficulty;

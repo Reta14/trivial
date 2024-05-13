@@ -6,12 +6,15 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+// Se encarga de enviar y recibir mensajes.
 public class Client{
-    private static Client instance;
-    private Socket socket;
+    private static Client instance;    // Instancia estática de la clase Client para implementar el patrón Singleton.
+    private Socket socket;  // Socket para la comunicación con el servidor.
     private PrintWriter out;
     private BufferedReader in;
 
+    // Constructor de la clase Client.
+    // Intenta establecer una conexión con el servidor en la dirección y puerto especificados.
     public Client(String direccionServidor, int puertoServidor) {
         try {
             socket = new Socket(direccionServidor, puertoServidor);
@@ -30,7 +33,7 @@ public class Client{
         return in.readLine();
     }
 
-    public void cerrarConexion() {
+    public void cerrarConexion() {  // Cierra el PrintWriter, el BufferedReader y el Socket.
         try {
             out.close();
             in.close();
@@ -39,6 +42,9 @@ public class Client{
             e.printStackTrace();
         }
     }
+
+    // Retorna instancia de la clase Client.
+    // Si la instancia es null, crea una nueva instancia de la clase Client.
 
     public static Client getInstance() {
         if (instance == null) {
