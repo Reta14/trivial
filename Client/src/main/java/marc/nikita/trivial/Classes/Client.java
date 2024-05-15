@@ -49,6 +49,7 @@ public class Client{
     public static Client getInstance() {
         if (instance == null) {
             instance = new Client("127.0.0.1", 1234);
+            //instance = new Client("10.0.127.4", 1234);
         }
         return instance;
     }
